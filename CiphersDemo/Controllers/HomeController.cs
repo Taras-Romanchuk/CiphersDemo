@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CiphersDemo.Models;
+using CiphersDemo.ViewModels;
 
 namespace CiphersDemo.Controllers
 {
@@ -23,7 +24,15 @@ namespace CiphersDemo.Controllers
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult CaesarCipher()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CaesarCipher(CaesarCipherViewModel caesarCipherViewModel)
         {
             return View();
         }

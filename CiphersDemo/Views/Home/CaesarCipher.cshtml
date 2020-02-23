@@ -1,7 +1,27 @@
-﻿
+﻿@model CaesarCipherViewModel
 @{
     ViewData["Title"] = "CaesarCipher";
 }
 
 <h1>CaesarCipher</h1>
 
+<form asp-controller="home" asp-action="caesarcipher" method="post" class="mt-3">
+    <div class="form-group row">
+        <label asp-for="InputText" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="InputText" class="form-control">
+            <span asp-validation-for="InputText" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Shift" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Shift" class="form-control">
+            <span asp-validation-for="Shift" class="text-danger"></span>
+        </div>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary">Encrypt</button>
+    </div>
+</form>
