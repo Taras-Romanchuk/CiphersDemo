@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using CiphersDemo.CipherServices;
 using CiphersDemo.Models;
 using CiphersDemo.ViewModels;
 
@@ -34,7 +35,15 @@ namespace CiphersDemo.Controllers
         [HttpPost]
         public IActionResult CaesarCipher(CaesarCipherViewModel caesarCipherViewModel)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var caesarCipherData = new CaesarCipherData(caesarCipherViewModel.Shift);
+                var cipherService = new CaesarCipherService(caesarCipherData);
+                // Does not work - to be fixed
+                caesarCipherViewModel.OutputText = cipherService.Encrypt(caesarCipherViewModel.InputText);
+            }
+
+            return View(caesarCipherViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
