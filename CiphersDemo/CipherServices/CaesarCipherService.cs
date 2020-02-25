@@ -13,7 +13,21 @@ namespace CiphersDemo.CipherServices
 
         public string Encrypt(string inputText)
         {
-            return "Encryption functionality implementation is in progress";
+            string outputText = String.Empty;
+
+            foreach (var character in inputText)
+            {
+                if (character == ' ')
+                {
+                    outputText += ' ';
+                }
+                else
+                {
+                    outputText += (char)(character + shift);
+                }
+            }
+
+            return outputText;
         }
 
         public string Decrypt(string inputText)

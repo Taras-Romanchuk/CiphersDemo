@@ -37,9 +37,9 @@ namespace CiphersDemo.Controllers
         {
             if (ModelState.IsValid)
             {
+                ModelState.Clear();
                 var caesarCipherData = new CaesarCipherData(caesarCipherViewModel.Shift);
                 var cipherService = new CaesarCipherService(caesarCipherData);
-                // Does not work - to be fixed
                 caesarCipherViewModel.OutputText = cipherService.Encrypt(caesarCipherViewModel.InputText);
             }
 
