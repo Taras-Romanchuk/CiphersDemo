@@ -1,5 +1,3 @@
-using System;
-
 namespace CiphersDemo.Models
 {
     public class ErrorViewModel

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CiphersDemo.ViewModels
 {
@@ -7,7 +6,7 @@ namespace CiphersDemo.ViewModels
     {
         [Required]
         [Display(Name = "Type your text to encrypt here:")]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Use English alphabet only")]
+        [RegularExpression(@"^[A-Z\s]+$", ErrorMessage = "Use English alphabet uppercase only")]
         public string InputText { get; set; }
 
         [Required]

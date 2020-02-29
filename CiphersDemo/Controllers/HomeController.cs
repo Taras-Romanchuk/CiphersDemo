@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CiphersDemo.CipherServices;
@@ -27,13 +23,13 @@ namespace CiphersDemo.Controllers
 
 
         [HttpGet]
-        public IActionResult CaesarCipher()
+        public IActionResult CaesarCipherEncrypt()
         {
-            return View();
+            return View("CaesarCipher");
         }
 
         [HttpPost]
-        public IActionResult CaesarCipher(CaesarCipherViewModel caesarCipherViewModel)
+        public IActionResult CaesarCipherEncrypt(CaesarCipherViewModel caesarCipherViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -43,7 +39,28 @@ namespace CiphersDemo.Controllers
                 caesarCipherViewModel.OutputText = cipherService.Encrypt(caesarCipherViewModel.InputText);
             }
 
-            return View(caesarCipherViewModel);
+            return View("CaesarCipher", caesarCipherViewModel);
+        }
+
+
+        [HttpGet]
+        public IActionResult CaesarCipherDecrypt()
+        {
+            return View("CaesarCipher");
+        }
+
+        [HttpPost]
+        public IActionResult CaesarCipherDecrypt(CaesarCipherViewModel caesarCipherViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                ModelState.Clear();
+                var caesarCipherData = new CaesarCipherData(caesarCipherViewModel.Shift);
+                var cipherService = new CaesarCipherService(caesarCipherData);
+                caesarCipherViewModel.OutputText = cipherService.Decrypt(caesarCipherViewModel.InputText);
+            }
+
+            return View("CaesarCipher", caesarCipherViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

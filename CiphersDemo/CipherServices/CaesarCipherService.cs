@@ -13,7 +13,17 @@ namespace CiphersDemo.CipherServices
 
         public string Encrypt(string inputText)
         {
-            string outputText = String.Empty;
+            return CaesarCipherEncryption(inputText, shift);
+        }
+
+        public string Decrypt(string inputText)
+        {
+            return CaesarCipherEncryption(inputText, 26 - shift);
+        }
+
+        private string CaesarCipherEncryption(string inputText, int shift)
+        {
+            var outputText = String.Empty;
 
             foreach (var character in inputText)
             {
@@ -23,16 +33,28 @@ namespace CiphersDemo.CipherServices
                 }
                 else
                 {
-                    outputText += (char)(character + shift);
+                    outputText += ShiftedCharacter(character, shift);
                 }
             }
 
             return outputText;
         }
 
-        public string Decrypt(string inputText)
+        private char ShiftedCharacter(char character, int shift)
         {
-            return "Decryption functionality implementation is in progress";
+            var shiftedCharacter = character + shift;
+
+            if (!IsInAlphabetRange(character + shift))
+            {
+                shiftedCharacter -= 26;
+            }
+
+            return (char) shiftedCharacter;
+        }
+
+        private bool IsInAlphabetRange(int character)
+        {
+            return character >= 65 && character <= 90;
         }
     }
 }
